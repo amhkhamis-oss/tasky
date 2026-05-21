@@ -221,7 +221,6 @@ class _ProfileState extends State<Profile> {
   }
 
   //mmmmm
-  //tryrtyryr
 
   void _saveImage(XFile file) async {
     final appDir = await getApplicationDocumentsDirectory();
