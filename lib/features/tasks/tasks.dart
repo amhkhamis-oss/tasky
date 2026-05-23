@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
-import 'package:tasky3/screens/models/task_model.dart';
-import 'package:tasky3/widgets/task_list_widget.dart';
+import 'package:tasky3/models/task_model.dart';
+import 'package:tasky3/core/components/task_list_widget.dart';
 
 class Tasks extends StatefulWidget {
   const Tasks({super.key});

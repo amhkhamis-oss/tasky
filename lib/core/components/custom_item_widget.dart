@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:tasky3/core/enums/task_item_actions_enum.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/core/theme/theme_controller.dart';
-import 'package:tasky3/screens/models/task_model.dart';
-import 'package:tasky3/widget/custom_check_box.dart';
-import 'package:tasky3/widget/custom_text_form_field.dart';
+import 'package:tasky3/models/task_model.dart';
+import 'package:tasky3/core/widget/custom_check_box.dart';
+import 'package:tasky3/core/widget/custom_text_form_field.dart';
 
 class CustomItemWidget extends StatelessWidget {
   const CustomItemWidget({

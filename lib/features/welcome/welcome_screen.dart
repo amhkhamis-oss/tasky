@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
-import 'package:tasky3/screens/main_screen.dart';
-import 'package:tasky3/widget/custom_svg_picture.dart';
-import 'package:tasky3/widget/custom_text_form_field.dart';
+import 'package:tasky3/features/novigation/main_screen.dart';
+import 'package:tasky3/core/widget/custom_svg_picture.dart';
+import 'package:tasky3/core/widget/custom_text_form_field.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
-import 'package:tasky3/widget/custom_text_form_field.dart';
+import 'package:tasky3/core/widget/custom_text_form_field.dart';
 
 class UserDetailScreen extends StatefulWidget {
   UserDetailScreen({super.key});

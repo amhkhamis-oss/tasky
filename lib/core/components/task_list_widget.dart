@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasky3/screens/models/task_model.dart';
-import 'package:tasky3/widgets/custom_item_widget.dart';
+import 'package:tasky3/models/task_model.dart';
+import 'package:tasky3/core/components/custom_item_widget.dart';
 
 class TaskListWidget extends StatelessWidget {
   const TaskListWidget({

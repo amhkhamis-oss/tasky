@@ -5,9 +5,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/core/theme/theme_controller.dart';
-import 'package:tasky3/screens/user_detail_screen.dart';
-import 'package:tasky3/screens/welcome_screen.dart';
-import 'package:tasky3/widget/custom_svg_picture.dart';
+import 'package:tasky3/features/profile/user_detail_screen.dart';
+import 'package:tasky3/features/welcome/welcome_screen.dart';
+import 'package:tasky3/core/widget/custom_svg_picture.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
-import 'package:tasky3/screens/models/task_model.dart';
-import 'package:tasky3/widget/custom_text_form_field.dart';
+import 'package:tasky3/models/task_model.dart';
+import 'package:tasky3/core/widget/custom_text_form_field.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
