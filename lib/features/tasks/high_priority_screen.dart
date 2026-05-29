@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/models/task_model.dart';
 import 'package:tasky3/core/components/task_list_widget.dart';
@@ -27,7 +28,7 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
     setState(() {
       isLoading = true;
     });
-    final tasks = PrefrenceManager().getString('tasks');
+    final tasks = PrefrenceManager().getString(StorageKey.tasks);
     if (tasks != null) {
       final tasksDecode = jsonDecode(tasks) as List<dynamic>;
       setState(() {
@@ -46,7 +47,7 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
   void _deleteTask(int? id) async {
     List<TaskModel> tasks = [];
 
-    final tasksList = PrefrenceManager().getString('tasks');
+    final tasksList = PrefrenceManager().getString(StorageKey.tasks);
     if (tasksList != null) {
       final tasksDecode = jsonDecode(tasksList) as List<dynamic>;
       tasks = tasksDecode.map((e) => TaskModel.fromJson(e)).toList();
@@ -57,7 +58,7 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
       listTasks.removeWhere((element) => element.id == id);
     });
     await PrefrenceManager().setString(
-      'tasks',
+      StorageKey.tasks,
       jsonEncode(tasks.map((task) => task.toMap()).toList()),
     );
   }
@@ -83,7 +84,7 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
                 setState(() {
                   listTasks[index!].isCheck = value ?? false;
                 });
-                final allData = PrefrenceManager().getString('tasks');
+                final allData = PrefrenceManager().getString(StorageKey.tasks);
                 if (allData != null) {
                   List<TaskModel> allTasks =
                       (jsonDecode(allData) as List<dynamic>).map((e) {
@@ -94,7 +95,7 @@ class _HighPriorityScreenState extends State<HighPriorityScreen> {
                   );
                   allTasks[newIndex] = listTasks[index!];
                   await PrefrenceManager().setString(
-                    'tasks',
+                    StorageKey.tasks,
                     jsonEncode(allTasks.map((task) => task.toMap()).toList()),
                   );
                 }

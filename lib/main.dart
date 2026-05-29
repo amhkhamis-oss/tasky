@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/core/theme/dark_theme.dart';
 import 'package:tasky3/core/theme/light_theme.dart';
@@ -11,7 +12,7 @@ void main() async {
   await PrefrenceManager().init();
   ThemeController().init();
 
-  String? userName = PrefrenceManager().getString('username');
+  String? userName = PrefrenceManager().getString(StorageKey.username);
   runApp(
     ValueListenableBuilder<ThemeMode>(
       valueListenable: ThemeController.themeNotifier,

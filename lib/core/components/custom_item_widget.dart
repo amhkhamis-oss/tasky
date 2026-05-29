@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/enums/task_item_actions_enum.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/core/theme/theme_controller.dart';
@@ -221,7 +222,7 @@ class CustomItemWidget extends StatelessWidget {
                                 onPressed: () async {
                                   if (key.currentState!.validate()) {
                                     final taskJson = PrefrenceManager()
-                                        .getString('tasks');
+                                        .getString(StorageKey.tasks);
                                     List listTasks = [];
                                     if (taskJson != null) {
                                       listTasks = jsonDecode(taskJson);
@@ -243,7 +244,7 @@ class CustomItemWidget extends StatelessWidget {
                                     listTasks[index] = newModel.toMap();
 
                                     await PrefrenceManager().setString(
-                                      'tasks',
+                                      StorageKey.tasks,
                                       jsonEncode(listTasks),
                                     );
                                     Navigator.of(context).pop(true);

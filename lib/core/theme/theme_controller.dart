@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 
 class ThemeController {
@@ -7,17 +8,17 @@ class ThemeController {
   );
 
   init() {
-    bool result = PrefrenceManager().getBool("theme") ?? true;
+    bool result = PrefrenceManager().getBool(StorageKey.theme) ?? true;
     themeNotifier.value = result ? ThemeMode.dark : ThemeMode.light;
   }
 
   static Future<void> toggleTheme() async {
     if (themeNotifier.value == ThemeMode.dark) {
       themeNotifier.value = ThemeMode.light;
-      await PrefrenceManager().setbool('theme', false);
+      await PrefrenceManager().setbool(StorageKey.theme, false);
     } else {
       themeNotifier.value = ThemeMode.dark;
-      await PrefrenceManager().setbool('theme', true);
+      await PrefrenceManager().setbool(StorageKey.theme, true);
     }
   }
 

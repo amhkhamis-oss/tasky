@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/models/task_model.dart';
 import 'package:tasky3/core/components/task_list_widget.dart';
@@ -26,7 +27,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
     setState(() {
       isLoading = true;
     });
-    final finalTask = PrefrenceManager().getString('tasks');
+    final finalTask = PrefrenceManager().getString(StorageKey.tasks);
     if (finalTask != null) {
       final tasksDecode = jsonDecode(finalTask) as List<dynamic>;
       setState(() {
@@ -46,7 +47,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
   void _deleteTask(int? id) async {
     List<TaskModel> tasks = [];
 
-    final tasksList = PrefrenceManager().getString('tasks');
+    final tasksList = PrefrenceManager().getString(StorageKey.tasks);
     if (tasksList != null) {
       final tasksDecode = jsonDecode(tasksList) as List<dynamic>;
       tasks = tasksDecode.map((e) => TaskModel.fromJson(e)).toList();
@@ -57,7 +58,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
       tasks.removeWhere((element) => element.id == id);
     });
     await PrefrenceManager().setString(
-      'tasks',
+      StorageKey.tasks,
       jsonEncode(tasks.map((task) => task.toMap()).toList()),
     );
   }
@@ -85,7 +86,9 @@ class _CompletedTasksState extends State<CompletedTasks> {
                           completedTasks[index!].isCheck = value ?? false;
                         });
 
-                        final allData = PrefrenceManager().getString('tasks');
+                        final allData = PrefrenceManager().getString(
+                          StorageKey.tasks,
+                        );
                         if (allData != null) {
                           List<TaskModel> allTasks =
                               (jsonDecode(allData) as List<dynamic>).map((e) {
@@ -96,7 +99,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
                           );
                           allTasks[newIndex] = completedTasks[index!];
                           PrefrenceManager().setString(
-                            'tasks',
+                            StorageKey.tasks,
                             jsonEncode(allTasks.map((e) => e.toMap()).toList()),
                           );
                           loadTasks();

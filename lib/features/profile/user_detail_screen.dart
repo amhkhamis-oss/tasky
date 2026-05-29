@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/core/widget/custom_text_form_field.dart';
 
@@ -25,7 +26,8 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
 
   void loadUserData() async {
     setState(() {
-      userNameController.text = PrefrenceManager().getString('username') ?? "";
+      userNameController.text =
+          PrefrenceManager().getString(StorageKey.username) ?? "";
       motivationQuoteController.text =
           PrefrenceManager().getString('motivation_quote') ?? "";
     });
@@ -71,7 +73,7 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
                   onPressed: () async {
                     if (_key.currentState!.validate()) {
                       await PrefrenceManager().setString(
-                        'username',
+                        StorageKey.username,
                         userNameController.value.text,
                       );
                       await PrefrenceManager().setString(

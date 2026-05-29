@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/core/theme/theme_controller.dart';
 import 'package:tasky3/features/profile/user_detail_screen.dart';
@@ -32,7 +33,7 @@ class _ProfileState extends State<Profile> {
     setState(() {
       userName = PrefrenceManager().getString('username');
       motivationQoute = PrefrenceManager().getString('motivation_quote') ?? "";
-      userImage = PrefrenceManager().getString('user_image');
+      userImage = PrefrenceManager().getString(StorageKey.userImage);
     });
   }
 
@@ -140,8 +141,8 @@ class _ProfileState extends State<Profile> {
             Divider(thickness: 2),
             ListTile(
               onTap: () async {
-                PrefrenceManager().remove("tasks");
-                PrefrenceManager().remove("username");
+                PrefrenceManager().remove(StorageKey.tasks);
+                PrefrenceManager().remove(StorageKey.username);
                 PrefrenceManager().remove("motivation_quote");
 
                 Navigator.pushAndRemoveUntil(
@@ -226,6 +227,6 @@ class _ProfileState extends State<Profile> {
   void _saveImage(XFile file) async {
     final appDir = await getApplicationDocumentsDirectory();
     final newFile = await File(file.path).copy('${appDir.path}/${file.name}');
-    await PrefrenceManager().setString('user_image', newFile.path);
+    await PrefrenceManager().setString(StorageKey.userImage, newFile.path);
   }
 }
