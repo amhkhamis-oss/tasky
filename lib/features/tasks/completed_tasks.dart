@@ -24,21 +24,29 @@ class CompletedTasks extends StatelessWidget {
               child: controller.isLoading
                   ? Center(child: CircularProgressIndicator())
                   : Consumer<TasksController>(
-                      builder: (BuildContext context, value, Widget? child) {
-                        return TaskListWidget(
-                          tasks: value.completedTasks,
-                          onTap: (bool? value, int? index) async {
-                            controller.doneCompletedTasks(value, index);
+                      builder:
+                          (
+                            BuildContext context,
+                            valueController,
+                            Widget? child,
+                          ) {
+                            return TaskListWidget(
+                              tasks: valueController.completedTasks,
+                              onTap: (bool? value, int? index) async {
+                                controller.doneTask(
+                                  value,
+                                  valueController.completedTasks[index!].id,
+                                );
+                              },
+                              emptyMessage: 'No Completed Tasks',
+                              onDelete: (id) {
+                                controller.deleteTask(id);
+                              },
+                              onEdit: () {
+                                controller.init();
+                              },
+                            );
                           },
-                          emptyMessage: 'No Completed Tasks',
-                          onDelete: (id) {
-                            controller.deleteTask(id);
-                          },
-                          onEdit: () {
-                            controller.init();
-                          },
-                        );
-                      },
                     ),
             ),
           ],

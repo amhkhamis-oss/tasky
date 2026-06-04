@@ -17,21 +17,25 @@ class Tasks extends StatelessWidget {
         body: controller.isLoading
             ? Center(child: CircularProgressIndicator())
             : Consumer<TasksController>(
-                builder: (BuildContext context, value, Widget? child) {
-                  return TaskListWidget(
-                    tasks: value.todoTasks,
-                    onTap: (bool? value, int? index) async {
-                      controller.doneToDoTasks(value, index);
+                builder:
+                    (BuildContext context, valueController, Widget? child) {
+                      return TaskListWidget(
+                        tasks: valueController.todoTasks,
+                        onTap: (bool? value, int? index) async {
+                          controller.doneTask(
+                            value,
+                            valueController.todoTasks[index!].id,
+                          );
+                        },
+                        emptyMessage: 'No Tasks Found',
+                        onDelete: (id) {
+                          controller.deleteTask(id);
+                        },
+                        onEdit: () {
+                          controller.init();
+                        },
+                      );
                     },
-                    emptyMessage: 'No Tasks Found',
-                    onDelete: (id) {
-                      controller.deleteTask(id);
-                    },
-                    onEdit: () {
-                      controller.init();
-                    },
-                  );
-                },
               ),
       ),
     );

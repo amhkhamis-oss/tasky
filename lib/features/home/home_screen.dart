@@ -8,6 +8,7 @@ import 'package:tasky3/core/widget/custom_svg_picture.dart';
 import 'package:tasky3/features/home/components/achieved_task_list_widget.dart';
 import 'package:tasky3/features/home/components/high_priority_tasks_widget.dart';
 import 'package:tasky3/features/home/components/sliver_task_list_widget.dart';
+import 'package:tasky3/features/tasks/tasks_controller.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -15,8 +16,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = context.read<HomeController>();
-
     return ChangeNotifierProvider(
       create: (context) => HomeController()..init(),
       child: Scaffold(
@@ -38,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                   if (result != null && result) {
-                    builderContext.read<HomeController>().init();
+                    builderContext.read<TasksController>().init();
                   }
                 },
                 icon: Icon(Icons.add),

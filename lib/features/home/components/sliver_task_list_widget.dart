@@ -43,7 +43,10 @@ class SliverTaskListWidget extends StatelessWidget {
                         return CustomItemWidget(
                           model: controller.tasks[index],
                           onChanged: (bool? value) {
-                            controller.doneTask(value, index);
+                            controller.doneTask(
+                              value,
+                              controller.tasks[index].id,
+                            );
                             // onTap(value, index);
                           },
                           onDelete: (int? id) {
