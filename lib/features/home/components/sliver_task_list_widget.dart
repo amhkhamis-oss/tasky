@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky3/core/theme/theme_controller.dart';
-import 'package:tasky3/features/home/home_controller.dart';
 import 'package:tasky3/core/components/custom_item_widget.dart';
+import 'package:tasky3/features/tasks/tasks_controller.dart';
 
 class SliverTaskListWidget extends StatelessWidget {
   const SliverTaskListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeController>(
+    return Consumer<TasksController>(
       builder:
-          (BuildContext context, HomeController controller, Widget? child) {
+          (BuildContext context, TasksController controller, Widget? child) {
             return controller.isLoading
                 ? SliverToBoxAdapter(
                     child: Center(
@@ -22,7 +22,7 @@ class SliverTaskListWidget extends StatelessWidget {
                       ),
                     ),
                   )
-                : controller.task.isEmpty
+                : controller.tasks.isEmpty
                 ? SliverToBoxAdapter(
                     child: Center(
                       child: Text(
@@ -38,10 +38,10 @@ class SliverTaskListWidget extends StatelessWidget {
                         return SizedBox(height: 8);
                       },
 
-                      itemCount: controller.task.length,
+                      itemCount: controller.tasks.length,
                       itemBuilder: (BuildContext context, int index) {
                         return CustomItemWidget(
-                          model: controller.task[index],
+                          model: controller.tasks[index],
                           onChanged: (bool? value) {
                             controller.doneTask(value, index);
                             // onTap(value, index);
@@ -50,7 +50,7 @@ class SliverTaskListWidget extends StatelessWidget {
                             controller.deleteTask(id);
                             // onDelete(id);
                           },
-                          onEdit: () => controller.loadTasks(),
+                          onEdit: () => controller.init(),
                         );
                       },
                     ),

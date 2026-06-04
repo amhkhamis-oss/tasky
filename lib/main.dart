@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
 import 'package:tasky3/core/theme/dark_theme.dart';
 import 'package:tasky3/core/theme/light_theme.dart';
 import 'package:tasky3/core/theme/theme_controller.dart';
 import 'package:tasky3/features/novigation/main_screen.dart';
+import 'package:tasky3/features/tasks/tasks_controller.dart';
 import 'package:tasky3/features/welcome/welcome_screen.dart';
 
 void main() async {
@@ -17,12 +19,15 @@ void main() async {
     ValueListenableBuilder<ThemeMode>(
       valueListenable: ThemeController.themeNotifier,
       builder: (context, value, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: lightTheme,
-          themeMode: value,
-          darkTheme: darkTheme,
-          home: (userName == null) ? WelcomeScreen() : MainScreen(),
+        return ChangeNotifierProvider(
+          create: (context) => TasksController()..init(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: lightTheme,
+            themeMode: value,
+            darkTheme: darkTheme,
+            home: (userName == null) ? WelcomeScreen() : MainScreen(),
+          ),
         );
       },
     ),

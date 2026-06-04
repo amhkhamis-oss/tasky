@@ -2,15 +2,15 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky3/features/home/home_controller.dart';
+import 'package:tasky3/features/tasks/tasks_controller.dart';
 
 class AchievedTaskListWidget extends StatelessWidget {
   const AchievedTaskListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeController>(
-      builder: (context, HomeController controller, child) => Container(
+    return Consumer<TasksController>(
+      builder: (context, TasksController controller, child) => Container(
         padding: EdgeInsets.all(16),
         width: double.infinity,
         decoration: BoxDecoration(

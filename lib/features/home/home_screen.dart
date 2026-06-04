@@ -1,11 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky3/core/constants/storage_key.dart';
-import 'package:tasky3/core/services/prefrence-manager.dart';
-import 'package:tasky3/core/theme/theme_controller.dart';
 import 'package:tasky3/features/add_task/add_task.dart';
 import 'package:tasky3/features/home/home_controller.dart';
 import 'package:tasky3/core/widget/custom_svg_picture.dart';
@@ -42,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                   if (result != null && result) {
-                    builderContext.read<HomeController>().loadTasks();
+                    builderContext.read<HomeController>().init();
                   }
                 },
                 icon: Icon(Icons.add),

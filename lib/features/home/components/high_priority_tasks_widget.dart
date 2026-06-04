@@ -2,27 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky3/core/theme/theme_controller.dart';
-import 'package:tasky3/features/home/home_controller.dart';
 import 'package:tasky3/features/tasks/high_priority_screen.dart';
-import 'package:tasky3/models/task_model.dart';
+import 'package:tasky3/features/tasks/tasks_controller.dart';
 import 'package:tasky3/core/widget/custom_check_box.dart';
 
 class HighPriorityTasksWidget extends StatelessWidget {
-  const HighPriorityTasksWidget({
-    super.key,
-    // required this.onTap,
-    // required this.refresh,
-  });
-
-  // final Function(bool?, int?) onTap;
-  // final Function refresh;
+  const HighPriorityTasksWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeController>(
+    return Consumer<TasksController>(
       builder:
-          (BuildContext context, HomeController controller, Widget? child) {
-            final highPriorityTasks = controller.task.reversed
+          (BuildContext context, TasksController controller, Widget? child) {
+            final highPriorityTasks = controller.tasks.reversed
                 .where((e) => e.isHighPriority)
                 .toList();
 
@@ -62,9 +54,12 @@ class HighPriorityTasksWidget extends StatelessWidget {
                                 CustomCheckBox(
                                   value: task.isCheck,
                                   onChanged: (bool? value) {
-                                    final taskIndex = controller.task
+                                    final taskIndex = controller.tasks
                                         .indexWhere((e) => e.id == task.id);
-                                    controller.doneTask(value, taskIndex);
+                                    controller.doneHighPrirityTasks(
+                                      value,
+                                      taskIndex,
+                                    );
                                   },
                                 ),
                                 Flexible(
@@ -102,7 +97,7 @@ class HighPriorityTasksWidget extends StatelessWidget {
                             },
                           ),
                         );
-                        controller.loadTasks();
+                        controller.init();
                       },
                       child: Container(
                         height: 50,
