@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:tasky3/core/constants/storage_key.dart';
 import 'package:tasky3/core/services/prefrence-manager.dart';
@@ -9,11 +7,6 @@ class HomeController with ChangeNotifier {
   List<TaskModel> tasksList = [];
   String? username;
   String? userImage;
-  List<TaskModel> task = [];
-  bool isLoading = false;
-  int totalTask = 0;
-  int totalDoneTasks = 0;
-  double percentage = 0;
 
   void init() {
     loadUserData();
